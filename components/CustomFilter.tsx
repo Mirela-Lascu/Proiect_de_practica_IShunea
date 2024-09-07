@@ -25,8 +25,7 @@ const CustomFilter = ({ title, options} : CustomFilterProps) => {
         onChange={(e) => {
           setSelected(e);
           handleUpdateParams(e);
-        }}
-      >
+        }}>
         <div className ="relative w-fit z-10">
           <ListboxButton className = "custom-filter__btn">
             <span className = "block truncate">{selected.title}</span>
@@ -38,30 +37,19 @@ const CustomFilter = ({ title, options} : CustomFilterProps) => {
               alt="chevron up down"
             />
           </ListboxButton>
-          <Transition
-            as={Fragment}
-            leave='transition ease-in duration-100'
-            leaveFrom='opacity-100'
-            leaveTo='opacity-0'
-          >
-            <ListboxOptions className = 'custom-filter__options'>
-              {options.map((option) =>(
+          
+            <ListboxOptions anchor = "bottom" className = 'custom-filter_options mt-2 gap-2 bg-white'>
+              {options.map((option) => (
                 <ListboxOption
                   key={option.title}
                   value={option}
-                  className = "group relative cursor-default select-none py-2 px-4 bg-white text-gray-900 hover:bg-primary-blue hover:text-white"
-                >
-                  {({ active }) => (
-                    <>
-                      <span className = {`block truncate ${active ? "font-medium" : "font-normal"}`} >
-                        {option.title}
-                      </span>
-                    </>
-                  )}
+                  className = "relative cursor-default select-none py-2 px-4 bg-white data-[focus]:bg-primary-blue text-gray-900 data-[focus]:text-white">
+                  <span className = "block truncate group-data-[selected]:font-medium group-data-[selected]:text-white  text-white-900">
+                    {option.title}
+                  </span>
                 </ListboxOption>
               ))}
             </ListboxOptions>
-          </Transition>
         </div>
       </Listbox>
     </div>
